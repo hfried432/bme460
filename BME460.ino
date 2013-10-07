@@ -39,11 +39,8 @@ void loop()
   lcd.print("Welcome");
   lcd.setCursor(0,1);
   lcd.print("Client Name");
+  delay (5000);
   
-  int mode = getMode();
-  int level = getLevel(mode);
-  Ready();
-  NextActivity();
-  Replay();
+  Game();
   
 }
