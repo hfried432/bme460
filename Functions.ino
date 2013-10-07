@@ -21,6 +21,7 @@ int buttons()
 
 int getMode()
 { 
+  Display(1);
   int modenumber=1;
 
   
@@ -75,7 +76,7 @@ int getMode()
 
 int getLevel(int gamemode)
 {
-  Display(3);
+  Display(4);
   if (gamemode==1){
     int levelnumber=3;
     Display(levelnumber);
@@ -231,6 +232,11 @@ int getLevel(int gamemode)
        lcd.setCursor(0,1);
        lcd.print("10 seconds");
        delay(10000);
+       lcd.clear();
+       lcd.setCursor(0,0);
+       lcd.print("Next Activity?");
+       lcd.setCursor(0,1);
+       lcd.print("Up=Yes Down=No");
      }
      delay(100);
      buttonnext = buttons();
@@ -251,10 +257,11 @@ int getLevel(int gamemode)
    
    while (0!=1){
      if (buttonre == btnUP){
-       // gamefunction
+       SameGame();
        break;
      }
      else if (buttonre ==btnDOWN){
+       Game();
        break;
      }
      delay(100);
@@ -262,3 +269,24 @@ int getLevel(int gamemode)
    }
    delay(400);
  }
+ 
+ // Game
+ 
+ void Game()
+ {
+  int mode = getMode();
+  
+  int level = getLevel(mode);
+  Ready();
+  NextActivity();
+  Replay();
+ };
+ 
+ // SameGame
+ 
+ void SameGame()
+ {
+   Ready();
+   NextActivity();
+   Replay();
+ };
