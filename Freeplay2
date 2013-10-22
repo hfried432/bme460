@@ -1,0 +1,82 @@
+#include <LiquidCrystal.h>
+
+int buttonin= 38;
+int buttonout= 39;
+int buttonre= 11;
+int pushin= 36;
+int pushout= A1;
+int pushre= 13;
+int joystickin= 50;
+int joystickout= 53;
+int joystickre= 5;
+int spinin= 52;
+int spinout= A6;
+int spinre= 7;
+int pullin= 51;
+int pullout= A14;
+int pullre= 4;
+
+LiquidCrystal lcd(47, 46, 45, 41, 44, 43);
+
+void setup(){
+  pinMode(buttonin, OUTPUT);
+  pinMode(buttonout, INPUT);
+  pinMode(buttonre, OUTPUT);
+  digitalWrite(buttonin, HIGH);
+  pinMode(pushin, OUTPUT);
+  pinMode(pushout, INPUT);
+  pinMode(pushre, OUTPUT);
+  digitalWrite(pushin, HIGH);
+  pinMode(joystickin, OUTPUT);
+  pinMode(joystickout, INPUT);
+  pinMode(joystickre, OUTPUT);
+  digitalWrite(joystickin, HIGH);
+  pinMode(spinin, OUTPUT);
+  pinMode(spinout, INPUT);
+  pinMode(spinre, OUTPUT);
+  digitalWrite(spinin, HIGH);
+  pinMode(pullin, OUTPUT);
+  pinMode(pullout, INPUT);
+  pinMode(pullre, OUTPUT);
+  digitalWrite(pullin, HIGH);
+  
+  lcd.begin(20,4);
+  
+  lcd.clear();
+  lcd.setCursor(0,0);
+  lcd.print("Welcome");
+  lcd.setCursor(0,1);
+  lcd.print("Client Name");
+  delay (5000);
+}
+void loop(){
+  Freeplay();
+}
+ void Freeplay(){
+   int buttonsense=digitalRead(buttonout);
+         int pushsense=analogRead(pushout);
+         int joysticksense=digitalRead(joystickout);
+         int spinsense=analogRead(spinout);
+         int pullsense=analogRead(pullout);
+         if (buttonsense == HIGH){
+           digitalWrite(buttonre, HIGH);
+           delay(3000);
+           digitalWrite(buttonre, LOW);
+         }else if (pushsense <= 500){
+           digitalWrite(pushre, HIGH);
+           delay(3000);
+           digitalWrite(pushre, LOW);
+         }else if (joysticksense == HIGH){
+           digitalWrite(joystickre, HIGH);
+           delay(3000);
+           digitalWrite(joystickre, LOW);
+         }else if (spinsense <= 500){
+           digitalWrite(spinre, HIGH);
+           delay(3000);
+           digitalWrite(spinre, LOW);
+         }else if (pullsense <= 500){
+           digitalWrite(pullre, HIGH);
+           delay(3000);
+           digitalWrite(pullre, LOW);
+         }
+        }
