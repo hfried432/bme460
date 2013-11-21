@@ -7,6 +7,21 @@ void Freeplay(){
   digitalWrite(joystickin, HIGH);
   digitalWrite(spinin, HIGH);
   digitalWrite(pullin, HIGH);
+  
+  lcd.clear();
+//  lcd.setCursor(0,1);
+//  lcd.print(bballsense);
+  lcd.setCursor(0,2);
+  lcd.print(pushsense);
+  lcd.setCursor(0,3);
+  lcd.print(pullsense);
+  lcd.setCursor(10,0);
+  lcd.print(buttonsense);
+  lcd.setCursor(10,1);
+  lcd.print(joysticksense);
+  lcd.setCursor(10,2);
+  lcd.print(spinsense);
+  delay(400);
 
   if(!checkInterrupt()){
 
@@ -52,13 +67,13 @@ void Freeplay(){
     }
 
   }
-//  else if (IRdetect >= 50){
+//  else if (bballsense >= 50){
 //    bballresponse();
 //  }
-  else if (buttonsense == HIGH){
+  else if (buttonsense >= 700){
     buttonresponse();
   }
-  else if (pushsense <= 500){
+  else if (pushsense >= 700){
     pushresponse();
   }
   else if (joysticksense >= 700){
@@ -233,29 +248,29 @@ void LEDresponse(int LED){
 
   case 4:
     {
-      send_1M_pattern(pattern_test_comet4, 10, 500);
+      send_1M_pattern(pattern_test_purple, 10, 500);
       delay(500);
     }
   case 5:
     {
-      send_1M_pattern(pattern_test_comet5, 10, 500);
+      send_1M_pattern(pattern_test_yellow, 10, 500);
       delay(500);
     }
 
   case 6:
     {
-      send_1M_pattern(pattern_test_comet2, 10, 500);
+      send_1M_pattern(pattern_test_orange, 10, 500);
       delay(500);
     }
 
   case 7:
     {
-      send_1M_pattern(pattern_test_comet3, 10, 500);
+      send_1M_pattern(pattern_test_pink, 10, 500);
       delay(500);
     }
   case 8:
     {
-      send_1M_pattern(pattern_test_comet4, 10, 500);
+      send_1M_pattern(pattern_test_cyan, 10, 500);
       delay(500);
     }
   }
